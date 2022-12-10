@@ -1,3 +1,5 @@
+import kotlin.math.sign
+
 object Day09 {
 
     private val ADJACENTS = listOf(
@@ -23,7 +25,7 @@ object Day09 {
             val (dir, count) = s.split(" ")
             dir to count.toInt()
         }.flatMap { (dir, count) ->
-            List(count) { it }.map {
+            generateSequence { dir }.take(count).map {
                 val (sx, sy) = STEPS.getValue(dir)
                 knots[0] = knots[0].first + sx to knots[0].second + sy
 
